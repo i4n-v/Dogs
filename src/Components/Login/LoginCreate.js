@@ -5,7 +5,7 @@ import Error from "../Helper/Error";
 import useForm from "../../Hooks/useForm";
 import { USER_POST } from "../../Api";
 import { UserContext } from "../../UserContext";
-import useFecth from "../../Hooks/useFecth";
+import useFetch from "../../Hooks/useFetch";
 
 function LoginCreate() {
   const username = useForm();
@@ -13,7 +13,7 @@ function LoginCreate() {
   const password = useForm("password");
 
   const { userLogin } = React.useContext(UserContext);
-  const { error, loading, request } = useFecth();
+  const { error, loading, request } = useFetch();
 
   async function handleSubmit(event) {
     event.preventDefault();
