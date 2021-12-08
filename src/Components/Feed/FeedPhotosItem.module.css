@@ -34,7 +34,7 @@
 
 .visualizacao::before {
   width: 16px;
-  height: 16px;
+  height: 10px;
   content: "";
   display: inline-block;
   margin-right: 0.25rem;
