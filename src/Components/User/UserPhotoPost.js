@@ -6,6 +6,7 @@ import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
 import { PHOTO_POST } from "../../Api";
 import { useNavigate } from "react-router-dom";
+import Error from "../Helper/Error";
 
 const UserPhotoPost = () => {
   const nome = useForm();
@@ -23,9 +24,9 @@ const UserPhotoPost = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("img", img.raw);
-    formData.append("img", nome.value);
-    formData.append("img", peso.value);
-    formData.append("img", idade.value);
+    formData.append("nome", nome.value);
+    formData.append("peso", peso.value);
+    formData.append("idade", idade.value);
 
     const token = window.localStorage.getItem("token");
     const { url, options } = PHOTO_POST(formData, token);
@@ -53,6 +54,7 @@ const UserPhotoPost = () => {
           onChange={handleImgChange}
         />
         {loading ? <Button disabled>Enviando</Button> : <Button>Enviar</Button>}
+        {error && <Error error={error} />}
       </form>
       <div>
         {img.preview && (
