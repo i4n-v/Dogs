@@ -7,19 +7,21 @@ const UserStatsGraphs = ({ data }) => {
   const [total, setTotal] = React.useState(0);
 
   React.useEffect(() => {
-    const graphData = data.map((item) => {
-      return {
-        x: item.title,
-        y: Number(item.acessos),
-      };
-    });
+    if (data[0]) {
+      const graphData = data.map((item) => {
+        return {
+          x: item.title,
+          y: Number(item.acessos),
+        };
+      });
 
-    setTotal(
-      data
-        .map(({ acessos }) => Number(acessos))
-        .reduce((total, acesso) => total + acesso)
-    );
-    setGraph(graphData);
+      setTotal(
+        data
+          .map(({ acessos }) => Number(acessos))
+          .reduce((total, acesso) => total + acesso)
+      );
+      setGraph(graphData);
+    }
   }, [data]);
 
   return (
@@ -34,14 +36,14 @@ const UserStatsGraphs = ({ data }) => {
           padding={{ top: 20, bottom: 20, left: 80, right: 80 }}
           style={{
             data: {
-              fillOpacity: .9,
-              stroke: '#fff',
+              fillOpacity: 0.9,
+              stroke: "#fff",
               stroWidth: 2,
             },
             labels: {
               fontSize: 14,
-              fill: '#333',
-            }
+              fill: "#333",
+            },
           }}
         />
       </div>
