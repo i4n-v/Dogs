@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { photo } from "./photo";
+import photo from "./photo";
 import token from "./token";
 import user from "./user";
 
