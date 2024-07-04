@@ -5,7 +5,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Components/Home";
 import Login from "./Components/Login/Login";
-import { UserStorage } from './UserContext';
+import { UserStorage } from "./UserContext";
 import User from "./Components/User/User";
 import ProtectedRoute from "./Components/Login/ProtectedRoute";
 import Photo from "./Components/Photo/Photo";
@@ -22,9 +22,30 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="login/*" element={<Login />} />
-              <ProtectedRoute path="conta/*" element={<User />} />
-              <ProtectedRoute path="foto/:id" element={<Photo />} />
-              <ProtectedRoute path="perfil/:user" element={<UserProfile />} />
+              <Route
+                path="conta/*"
+                element={
+                  <ProtectedRoute>
+                    <User />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="foto/:id"
+                element={
+                  <ProtectedRoute>
+                    <Photo />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="perfil/:user"
+                element={
+                  <ProtectedRoute>
+                    <UserProfile />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
