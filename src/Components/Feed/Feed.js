@@ -10,7 +10,6 @@ import Error from "../Helper/Error";
 const Feed = ({ user }) => {
   const dispatch = useDispatch();
   const { infinite, loading, list, error } = useSelector((state) => state.feed);
-  const [modalPhoto, setModalPhoto] = React.useState(null);
 
   React.useEffect(() => {
     dispatch(resetFeedState());
@@ -43,10 +42,8 @@ const Feed = ({ user }) => {
 
   return (
     <div>
-      {modalPhoto && (
-        <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
-      )}
-      {!!list.length && <FeedPhotos setModalPhoto={setModalPhoto} />}
+      <FeedModal />
+      {!!list.length && <FeedPhotos />}
       {loading && <Loading />}
       {error && <Error error={error} />}
       {!infinite && !user && (
